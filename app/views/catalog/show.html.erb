@@ -1,0 +1,18 @@
+<h2>por <%=@liquor.producer.name %></h2>
+<% if @liquor.cover_image.exists? then %>
+  <dd><%= image_tag @liquor.cover_image.url %></dd>
+<% else %>
+  <p>Imagen de licor no disponible.</p>
+<% end %>
+<dl>
+  <dt>Precio</dt>
+  <dd><%= sprintf("%0.2f € ", @liquor.price) %></dd>
+  <dt>Graduación</dt>
+  <dd><%= @liquor.graduation %></dd>
+  <dt>Proveedores</dt>
+  <dd><%= @liquor.supplier_names %></dd>
+  <dt>Descripción</dt>
+  <%= RedCloth.new(@liquor.blurb).to_html.html_safe if @liquor.blurb %>
+</dl>
+
+<p><%= link_to 'Catálogo', :action => 'index' %> </p>

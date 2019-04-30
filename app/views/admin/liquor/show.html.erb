@@ -1,0 +1,26 @@
+<dl>
+  <dt>Nombre</dt>
+  <dd><%= @liquor.name %></dd>
+  <dt>Productor</dt>
+  <dd><%= @liquor.producer.name %></dd>
+  <dt>Producido el</dt>
+  <dd><%= @liquor.produced_at.strftime("%d/%m/%Y a las %I:%M%p") %></dd>
+  <dt>Proveedores</dt>
+  <dd><%= @liquor.supplier_names %></dd>
+  <dt>Descripción</dt>
+  <%= RedCloth.new(@liquor.blurb).to_html.html_safe if @liquor.blurb %>
+  <dt>Precio</dt>
+  <dd><%= @liquor.price %></dd>
+  <dt>Graduación</dt>
+  <dd><%= @liquor.graduation %></dd>
+  <dt>Imagen del licor</dt>
+  <% if @liquor.cover_image.exists? then %>
+    <dd><%= image_tag @liquor.cover_image.url %></dd>
+  <% else %>
+    <dd><%= image_tag '/licores.png' %></dd>
+    <p> No hay imagen de licor. Por favor, adjunte una. </p>
+  <% end %>
+</dl>
+
+<%= link_to 'Editar', :action => 'edit', :id => @liquor %> |
+<%= link_to 'Atrás', :action => 'index' %>

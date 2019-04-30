@@ -1,0 +1,16 @@
+<dl id = 'liquors'>
+  <% for liquor in @liquors %>
+    <dt>
+      <%= link_to liquor.name, :action => 'show', :id => liquor %>
+      <%= link_to '+', :controller => 'cart', :action => 'add', :id => liquor %>
+    
+    </dt>
+    <dd><%= liquor.producer.name %></dd>
+    <dd><%= sprintf("Graduación: %d %%. Precio: %.2f €",liquor.graduation, liquor.price) %> </dd>
+    <dd><small>Proveedores:
+    <% for supplier in liquor.suppliers %>
+      <%= supplier.last_name %>, <%= supplier.first_name %>.
+    <% end %>
+    </small></dd>
+    <% end %>
+</dl>

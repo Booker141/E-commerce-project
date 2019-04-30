@@ -1,0 +1,8 @@
+<tr>
+  <td><%= link_to supplier.name, :action => 'show', :id => supplier %></td>
+  <td><%= link_to 'Editar', :action => 'edit', :id => supplier %></td>
+  <td>
+    <%= button_to 'Eliminar', { :action => 'destroy', :id => supplier },
+        data: { confirm: "¿Está seguro de que quiere eliminar el proveedor #{supplier.name}?" } %>
+  </td>
+</tr>
